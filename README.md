@@ -136,3 +136,115 @@ Monthly Savings      ₹      5,833.33 ₹     17,500.00
 Disposable Income    ₹     27,500.00 ₹     35,000.00
 ═════════════════════════════════════════════════════
 
+# PART C — Interview Ready (20%)
+
+This section evaluates conceptual understanding, debugging ability, and
+type-handling skills in Python.  
+All questions are answered in the given order, with explanations and verified outputs.
+
+---
+
+## Q1️⃣ Conceptual — Data Types Deep Dive
+
+**Instruction:**  
+Explain the output of each line *without running the code*, then verify by execution.
+
+### Given Code
+
+```python
+print(type(True))
+print(isinstance(True, int))
+print(True + True + False)
+print(int(3.99))
+print(bool("False"))
+print(bool(""))
+print(0.1 + 0.2 == 0.3)
+print("5" + "3")
+print(5 + 3)
+Explanation (Without Execution)
+Expression	Explanation	Output
+type(True)	True is a boolean literal	<class 'bool'>
+isinstance(True, int)	bool is a subclass of int	True
+True + True + False	True = 1, False = 0	2
+int(3.99)	int() truncates decimals	3
+bool("False")	Non-empty strings are truthy	True
+bool("")	Empty string is falsy	False
+0.1 + 0.2 == 0.3	Floating-point precision issue	False
+"5" + "3"	String concatenation	53
+5 + 3	Integer addition	8
+Verified Output (By Execution)
+<class 'bool'>
+True
+2
+3
+True
+False
+False
+53
+8
+Q2️⃣ Coding — Build a Type Analyzer
+Function Definition
+def analyze_value(value):
+    """
+    Analyze a value and return its characteristics.
+    """
+    value_type = type(value).__name__
+    truthy = bool(value)
+
+    if hasattr(value, "__len__"):
+        try:
+            length = len(value)
+        except TypeError:
+            length = "N/A"
+    else:
+        length = "N/A"
+
+    return (
+        f"Value: {value} | "
+        f"Type: {value_type} | "
+        f"Truthy: {truthy} | "
+        f"Length: {length}"
+    )
+Test Cases (As per Question Order)
+print(analyze_value(42))
+print(analyze_value(""))
+print(analyze_value([1, 2, 3]))
+Output
+Value: 42 | Type: int | Truthy: True | Length: N/A
+Value:  | Type: str | Truthy: False | Length: 0
+Value: [1, 2, 3] | Type: list | Truthy: True | Length: 3
+Q3️⃣ Debug — Find & Fix 4 Bugs
+Given Buggy Code
+name = input("Name: ")
+age = input("Age: ")
+
+if age >= 18:
+    status = "Adult"
+else:
+    status = "Minor"
+
+print(f"name is {age} years old and is a {status}")
+print(f"In 5 years: {age + 5}")
+
+score = 85.5
+print(f"Score: {score:.0}")
+Identified Bugs
+Bug #	Issue	Explanation
+1	Type mismatch	input() returns string; compared with integer
+2	Invalid arithmetic	String + integer operation
+3	Wrong variable usage	Literal "name" printed instead of variable
+4	Invalid format specifier	.0 is not valid for floats
+Corrected Code
+name = input("Name: ")
+age = int(input("Age: "))
+
+if age >= 18:
+    status = "Adult"
+else:
+    status = "Minor"
+
+print(f"{name} is {age} years old and is a {status}")
+print(f"In 5 years: {age + 5}")
+
+score = 85.5
+print(f"Score: {score:.0f}")
