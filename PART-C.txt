@@ -1,0 +1,67 @@
+PART C — Interview Ready (20%)
+
+====================================
+Q1: DATA TYPES DEEP DIVE
+====================================
+
+print(type(True))                 → <class 'bool'>
+print(isinstance(True, int))      → True
+print(True + True + False)        → 2
+print(int(3.99))                  → 3
+print(bool("False"))              → True
+print(bool(""))                   → False
+print(0.1 + 0.2 == 0.3)           → False
+print("5" + "3")                  → 53
+print(5 + 3)                      → 8
+
+====================================
+Q2: TYPE ANALYZER
+====================================
+
+CODE:
+
+def analyze_value(value):
+    value_type = type(value).__name__
+    truthy = bool(value)
+    if hasattr(value, "__len__"):
+        try:
+            length = len(value)
+        except TypeError:
+            length = "N/A"
+    else:
+        length = "N/A"
+    return f"Value: {value} | Type: {value_type} | Truthy: {truthy} | Length: {length}"
+
+OUTPUT:
+
+Value: 42 | Type: int | Truthy: True | Length: N/A
+Value:  | Type: str | Truthy: False | Length: 0
+Value: [1, 2, 3] | Type: list | Truthy: True | Length: 3
+
+====================================
+Q3: DEBUGGING
+====================================
+
+BUGS IDENTIFIED:
+1. age is string, not int
+2. String + integer arithmetic
+3. Incorrect variable used in print
+4. Invalid float format specifier
+
+CORRECTED CODE:
+
+name = input("Name: ")
+age = int(input("Age: "))
+if age >= 18:
+    status = "Adult"
+else:
+    status = "Minor"
+print(f"{name} is {age} years old and is a {status}")
+print(f"In 5 years: {age + 5}")
+score = 85.5
+print(f"Score: {score:.0f}")
+
+====================================
+STATUS
+====================================
+✔ Part C completed successfully

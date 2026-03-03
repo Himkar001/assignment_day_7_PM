@@ -1,0 +1,51 @@
+PART A — Concept Application (40%)
+Project: Personal Finance Calculator
+
+====================================
+PROBLEM STATEMENT
+====================================
+Build a Python program that collects employee salary information,
+validates inputs, performs financial calculations, and prints a
+professional financial summary.
+
+====================================
+FEATURES IMPLEMENTED
+====================================
+- Input collection using input()
+- Mandatory input validation
+- Monthly and annual calculations
+- Professional formatted output using f-strings
+- PEP 8 compliant code
+
+====================================
+CODE
+====================================
+
+[Paste your full finance_calculator.py code from Part A here
+(before Part B enhancements)]
+
+====================================
+SAMPLE OUTPUT
+====================================
+
+EMPLOYEE FINANCIAL SUMMARY
+Employee      : Priya Sharma
+Annual Salary : ₹12,00,000.00
+
+Monthly Breakdown:
+Gross Salary  : ₹1,00,000.00
+Tax (30.0%)   : ₹30,000.00
+Net Salary    : ₹70,000.00
+Rent          : ₹25,000.00 (35.7% of net)
+Savings (20%) : ₹14,000.00
+Disposable    : ₹31,000.00
+
+Annual Projection:
+Total Tax     : ₹3,60,000.00
+Total Savings : ₹1,68,000.00
+Total Rent    : ₹3,00,000.00
+
+====================================
+STATUS
+====================================
+✔ Part A completed successfully

@@ -1,0 +1,47 @@
+PART B — Stretch Enhancements (30%)
+
+====================================
+FEATURES ADDED
+====================================
+1. Indian currency formatting (lakhs/crores)
+2. Two-employee comparison
+3. Financial Health Score (0–100)
+
+====================================
+INDIAN NUMBER FORMATTING
+====================================
+Custom formatter used instead of locale for portability.
+
+Example:
+1200000 → 12,00,000.00
+
+====================================
+FINANCIAL HEALTH SCORE LOGIC
+====================================
+- Rent ratio < 30% → 40 points
+- Rent ratio 30–40% → 20 points
+- Savings ≥ 20% → 30 points
+- Savings 10–19% → 15 points
+- Disposable income ≥ 20% → 30 points
+Maximum score: 100
+
+====================================
+CODE
+====================================
+
+[Paste the FINAL finance_calculator.py including Part B]
+
+====================================
+SAMPLE OUTPUT
+====================================
+
+Employee 1 Health Score: 45/100
+Employee 2 Health Score: 80/100
+
+Comparison Table:
+Net Salary | Rent | Savings | Disposable Income
+
+====================================
+STATUS
+====================================
+✔ Part B completed successfully

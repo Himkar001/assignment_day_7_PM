@@ -1,0 +1,57 @@
+PART D — Type Conversion Reference via AI
+
+====================================
+AI PROMPT USED
+====================================
+
+Generate a Python type conversion matrix showing what happens when you convert
+between int, float, str, bool, list, and tuple.
+
+For each conversion:
+- Show the result if it succeeds
+- Mention output
+- Highlight edge cases
+- Mention errors clearly
+
+====================================
+AI CLAIMS (RAW OUTPUT)
+====================================
+
+AI claimed:
+bool("False") → False
+int("5") → 5
+list(5) → Error
+tuple("abc") → ('a','b','c')
+
+====================================
+PYTHON TESTING
+====================================
+All conversions were tested using real Python execution.
+
+====================================
+ACCURACY CHECK
+====================================
+
+Incorrect AI claims:
+- bool("False") → True (AI was wrong)
+- int → str conversion incorrectly shown as int("5")
+
+Correct AI claims:
+- list(5) → TypeError
+- tuple("abc") → ('a','b','c')
+- bool([]) → False
+
+====================================
+CRITICAL EVALUATION (SUMMARY)
+====================================
+
+The AI was mostly accurate for common conversions and error cases.
+However, it confused semantic meaning with Python truthiness rules,
+particularly for strings. It also mixed up parsing and casting.
+This demonstrates that AI-generated references must be verified
+against actual interpreter behavior.
+
+====================================
+STATUS
+====================================
+✔ Part D completed successfully
