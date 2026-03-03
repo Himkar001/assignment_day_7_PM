@@ -136,7 +136,9 @@ Monthly Savings      ₹      5,833.33 ₹     17,500.00
 Disposable Income    ₹     27,500.00 ₹     35,000.00
 ═════════════════════════════════════════════════════
 
-# PART C — Interview Ready (20%)
+---
+
+## 📌 Part C – (Interview ready 20%)
 
 This section evaluates conceptual understanding, debugging ability, and
 type-handling skills in Python.  
@@ -248,3 +250,134 @@ print(f"In 5 years: {age + 5}")
 
 score = 85.5
 print(f"Score: {score:.0f}")
+
+---
+
+# PART D — Type Conversion Reference via AI
+
+This section evaluates the reliability of AI-generated programming knowledge by
+testing Python type conversion claims against actual interpreter behavior.
+
+The task involved prompting an AI tool, validating its responses through
+execution, and critically evaluating its accuracy and limitations.
+
+---
+
+## 1️⃣ AI Prompt Used
+
+The following **exact prompt** was given to the AI tool:
+
+```text
+Generate a Python type conversion matrix showing what happens when you convert
+between int, float, str, bool, list, and tuple.
+
+For each conversion:
+- Show the result if it succeeds
+- Mention the output value
+- Highlight edge cases
+- Clearly state if the conversion raises an error and why
+
+Cover common and tricky cases such as empty values, zero, and non-numeric strings.
+2️⃣ AI-Generated Type Conversion Matrix (Raw Output)
+
+The AI produced the following conversion claims:
+
+int → float     : int(5) → 5.0
+int → str       : int("5") → 5
+int → bool      : bool(0) → False, bool(5) → True
+int → list      : list(5) → Error
+int → tuple     : tuple(5) → Error
+
+float → int     : int(3.7) → 3
+float → str     : str(3.7) → "3.7"
+float → bool    : bool(0.0) → False, bool(2.5) → True
+float → list    : list(3.7) → Error
+float → tuple   : tuple(3.7) → Error
+
+str → int       : int("123") → 123
+str → float     : float("3.14") → 3.14
+str → bool      : bool("False") → False
+str → list      : list("abc") → ['a', 'b', 'c']
+str → tuple     : tuple("abc") → ('a', 'b', 'c')
+
+bool → int      : int(True) → 1
+bool → float    : float(True) → 1.0
+bool → str      : str(True) → "True"
+bool → list     : list(True) → Error
+bool → tuple    : tuple(False) → Error
+
+list → tuple    : tuple([1, 2]) → (1, 2)
+list → str      : str([1,2]) → "[1, 2]"
+list → int      : int([1,2]) → Error
+list → float    : float([1,2]) → Error
+list → bool     : bool([]) → False
+
+tuple → list    : list((1,2)) → [1,2]
+tuple → str     : str((1,2)) → "(1, 2)"
+tuple → int     : int((1,2)) → Error
+tuple → float   : float((1,2)) → Error
+tuple → bool    : bool(()) → False
+3️⃣ Python Verification Process
+
+All conversions were tested directly in Python using a scripted test file.
+Each conversion was executed inside a try/except block to capture both
+successful results and raised exceptions.
+
+4️⃣ AI Accuracy Check
+Verified Conversion Results
+Conversion	AI Claim	Actual Result	Verdict
+int → float	5 → 5.0	5.0	✅ Correct
+int → str	int("5")	str(5)	❌ Incorrect
+int → bool	True if non-zero	True	✅ Correct
+int → list	Error	TypeError	✅ Correct
+int → tuple	Error	TypeError	✅ Correct
+
+| float → int | 3 | 3 | ✅ Correct |
+| float → str | "3.7" | "3.7" | ✅ Correct |
+| float → bool | True if non-zero | True | ✅ Correct |
+| float → list | Error | TypeError | ✅ Correct |
+| float → tuple | Error | TypeError | ✅ Correct |
+
+| str → int | "123" → 123 | 123 | ✅ Correct |
+| str → float | "3.14" → 3.14 | 3.14 | ✅ Correct |
+| str → bool | False | True | ❌ Incorrect |
+| str → list | ['a','b','c'] | ['a','b','c'] | ✅ Correct |
+| str → tuple | ('a','b','c') | ('a','b','c') | ✅ Correct |
+
+| bool → int | 1 / 0 | 1 / 0 | ✅ Correct |
+| bool → float | 1.0 | 1.0 | ✅ Correct |
+| bool → str | "True" | "True" | ✅ Correct |
+| bool → list | Error | TypeError | ✅ Correct |
+| bool → tuple | Error | TypeError | ✅ Correct |
+
+| list → tuple | (1,2) | (1,2) | ✅ Correct |
+| list → str | "[1, 2]" | "[1, 2]" | ✅ Correct |
+| list → int | Error | TypeError | ✅ Correct |
+| list → float | Error | TypeError | ✅ Correct |
+| list → bool | False if empty | False | ✅ Correct |
+
+| tuple → list | [1,2] | [1,2] | ✅ Correct |
+| tuple → str | "(1, 2)" | "(1, 2)" | ✅ Correct |
+| tuple → int | Error | TypeError | ✅ Correct |
+| tuple → float | Error | TypeError | ✅ Correct |
+| tuple → bool | False if empty | False | ✅ Correct |
+
+5️⃣ Critical Evaluation (≈170 words)
+
+The AI-generated type conversion matrix was largely accurate for common and
+well-known Python behaviors, particularly for numeric conversions, iterable
+transformations, and error cases involving non-iterable types. Most failures
+were raised correctly as TypeError, and standard truthiness rules for lists,
+tuples, and numbers were accurately described.
+
+However, the AI made notable conceptual mistakes. It incorrectly represented
+int → str conversion by using int("5") instead of str(5), demonstrating
+confusion between parsing and casting. More critically, it claimed
+bool("False") evaluates to False, which is incorrect — Python treats all
+non-empty strings as truthy regardless of their textual meaning. This reveals a
+tendency of AI systems to apply human semantics rather than language rules.
+
+Additionally, the AI omitted edge cases such as empty lists vs non-empty lists
+in truthiness explanations and did not mention ValueError cases like
+int("abc"). While AI is useful for quick references, this exercise shows that
+developer validation is essential, especially for language fundamentals.
